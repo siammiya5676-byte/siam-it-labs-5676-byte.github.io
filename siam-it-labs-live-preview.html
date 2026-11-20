@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="SIAM IT LABS builds practical websites, software, AI solutions and secure digital experiences.">
+  <title>SIAM IT LABS | Build · Solve · Innovate</title>
+  <style>
+    :root {
+      --navy: #06152d;
+      --navy-2: #0a2143;
+      --blue: #087cf0;
+      --cyan: #20c8f5;
+      --ink: #10213b;
+      --muted: #60718a;
+      --light: #f4f8ff;
+      --white: #fff;
+      --line: #dce7f5;
+      --shadow: 0 18px 50px rgba(5, 28, 65, .12);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, "Segoe UI", Arial, sans-serif;
+      color: var(--ink);
+      background: var(--white);
+      line-height: 1.6;
+    }
+    a { color: inherit; text-decoration: none; }
+    .container { width: min(1160px, calc(100% - 40px)); margin: auto; }
+    .site-header {
+      position: sticky; top: 0; z-index: 20;
+      background: rgba(5, 18, 39, .96);
+      border-bottom: 1px solid rgba(255,255,255,.1);
+      backdrop-filter: blur(14px);
+    }
+    .nav { min-height: 78px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .brand { display: flex; align-items: center; gap: 12px; color: white; font-weight: 800; letter-spacing: .4px; }
+    .brand-mark {
+      width: 43px; height: 43px; display: grid; place-items: center;
+      border: 3px solid var(--cyan); border-radius: 13px;
+      color: var(--cyan); font-size: 22px; font-weight: 900;
+      transform: rotate(-8deg);
+    }
+    .brand small { display: block; color: #b6c9e5; font-size: 10px; letter-spacing: 2px; font-weight: 600; }
+    .nav-links { display: flex; align-items: center; gap: 28px; color: #e7f1ff; font-size: 14px; }
+    .nav-links a:hover { color: var(--cyan); }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 9px;
+      padding: 12px 19px; border-radius: 999px; font-weight: 700; font-size: 14px;
+      background: var(--blue); color: white; border: 1px solid var(--blue);
+      box-shadow: 0 8px 24px rgba(8,124,240,.25); transition: .2s ease;
+    }
+    .btn:hover { transform: translateY(-2px); background: #0068d5; }
+    .btn-outline { background: transparent; border-color: rgba(255,255,255,.55); box-shadow: none; }
+    .menu-toggle { display: none; background: none; border: 1px solid #45617f; color: white; padding: 8px 11px; border-radius: 9px; font-size: 20px; }
+    .hero {
+      color: white; overflow: hidden; position: relative;
+      background:
+        radial-gradient(circle at 75% 35%, rgba(0,139,255,.34), transparent 30%),
+        radial-gradient(circle at 10% 90%, rgba(0,203,245,.14), transparent 28%),
+        linear-gradient(115deg, #041127 0%, #09264c 58%, #06172f 100%);
+    }
+    .hero-grid { min-height: 590px; display: grid; grid-template-columns: 1.02fr .98fr; align-items: center; gap: 36px; padding-top: 48px; padding-bottom: 56px; }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 8px; padding: 7px 13px;
+      border: 1px solid rgba(32,200,245,.55); border-radius: 999px;
+      color: #8eeaff; background: rgba(0,132,255,.12); font-size: 11px;
+      font-weight: 800; letter-spacing: 1.2px; text-transform: uppercase;
+    }
+    h1 { font-size: clamp(42px, 5.7vw, 72px); line-height: 1.02; letter-spacing: -2.8px; margin: 22px 0 18px; }
+    h1 span { color: var(--cyan); }
+    .hero-copy { color: #d4e3f7; font-size: 17px; max-width: 570px; margin: 0 0 27px; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+    .trust { margin-top: 25px; display: flex; flex-wrap: wrap; gap: 18px; color: #c5d8f0; font-size: 12px; }
+    .trust span::before { content: "✓"; color: #36e29a; font-weight: 900; margin-right: 7px; }
+    .hero-visual {
+      min-height: 405px; position: relative; border-radius: 28px; overflow: hidden;
+      border: 1px solid rgba(83,191,255,.45);
+      background:
+        linear-gradient(90deg, rgba(3,17,39,.12), rgba(3,17,39,.03)),
+        url("https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&q=85") center/cover,
+        linear-gradient(135deg, #0d3b70, #07152d);
+      box-shadow: 0 25px 70px rgba(0,0,0,.35);
+    }
+    .visual-overlay { position: absolute; inset: 0; background: linear-gradient(0deg, rgba(3,15,34,.82), transparent 58%); }
+    .visual-label { position: absolute; left: 24px; right: 24px; bottom: 23px; }
+    .visual-label strong { display: block; font-size: 22px; }
+    .visual-label small { color: #d0e5ff; }
+    .floating-chip {
+      position: absolute; top: 22px; right: 22px; padding: 11px 14px;
+      color: #e8f8ff; background: rgba(4,24,53,.8); border: 1px solid rgba(32,200,245,.5);
+      border-radius: 12px; font-size: 12px; font-weight: 700; backdrop-filter: blur(8px);
+    }
+    .section { padding: 86px 0; }
+    .section-light { background: var(--light); }
+    .section-heading { max-width: 650px; margin-bottom: 35px; }
+    .kicker { color: var(--blue); text-transform: uppercase; letter-spacing: 2px; font-size: 11px; font-weight: 900; }
+    h2 { font-size: clamp(30px, 4vw, 43px); line-height: 1.12; letter-spacing: -1.3px; margin: 10px 0 12px; color: var(--navy); }
+    .section-heading p { color: var(--muted); margin: 0; }
+    .services { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+    .service-card {
+      padding: 25px 22px; background: white; border: 1px solid var(--line);
+      border-radius: 17px; box-shadow: 0 8px 24px rgba(13,47,91,.05);
+      transition: .2s ease;
+    }
+    .service-card:hover { transform: translateY(-5px); box-shadow: var(--shadow); border-color: #a9d4ff; }
+    .service-icon {
+      width: 48px; height: 48px; display: grid; place-items: center;
+      border-radius: 14px; color: var(--blue); background: #eaf4ff; font-size: 23px; margin-bottom: 18px;
+    }
+    .service-card h3 { margin: 0 0 8px; color: var(--navy); font-size: 17px; }
+    .service-card p { color: var(--muted); font-size: 13px; margin: 0; }
+    .process-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 18px; margin-top: 34px; }
+    .step { border-top: 2px solid #c9ddf5; padding-top: 18px; }
+    .step b { color: var(--blue); font-size: 13px; letter-spacing: 1px; }
+    .step h3 { margin: 8px 0 5px; font-size: 17px; color: var(--navy); }
+    .step p { color: var(--muted); font-size: 13px; margin: 0; }
+    .cta {
+      padding: 43px; display: flex; align-items: center; justify-content: space-between; gap: 25px;
+      border-radius: 23px; color: white;
+      background: radial-gradient(circle at 85% 20%, rgba(32,200,245,.3), transparent 28%), linear-gradient(110deg,#06152d,#0b3c76);
+    }
+    .cta h2 { color: white; margin: 7px 0; }
+    .cta p { color: #c9dcf5; margin: 0; }
+    footer { background: #041127; color: #d7e5f7; padding: 30px 0; }
+    .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+    .footer-links { display: flex; gap: 20px; font-size: 13px; }
+    .copyright { color: #8fa6c4; font-size: 12px; }
+    @media (max-width: 900px) {
+      .hero-grid { grid-template-columns: 1fr; padding-top: 65px; }
+      .hero-visual { min-height: 350px; }
+      .services { grid-template-columns: repeat(2,1fr); }
+    }
+    @media (max-width: 650px) {
+      .container { width: min(100% - 30px, 1160px); }
+      .nav { min-height: 68px; }
+      .menu-toggle { display: block; }
+      .nav-links {
+        display: none; position: absolute; top: 68px; left: 0; right: 0;
+        padding: 18px 22px 22px; background: #06152d; flex-direction: column; align-items: stretch; gap: 16px;
+      }
+      .nav-links.open { display: flex; }
+      .nav-links .btn { width: 100%; }
+      .hero-grid { min-height: auto; padding-top: 55px; padding-bottom: 45px; gap: 30px; }
+      h1 { letter-spacing: -1.7px; }
+      .hero-copy { font-size: 15px; }
+      .hero-visual { min-height: 270px; border-radius: 19px; }
+      .section { padding: 62px 0; }
+      .services { grid-template-columns: 1fr; }
+      .process-grid { grid-template-columns: repeat(2,1fr); }
+      .cta { padding: 28px 22px; align-items: flex-start; flex-direction: column; }
+      .footer-inner { align-items: flex-start; flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="#home" aria-label="SIAM IT LABS home">
+        <span class="brand-mark">S</span>
+        <span>SIAM IT LABS<small>BUILD · SOLVE · INNOVATE</small></span>
+      </a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Open navigation" aria-expanded="false">☰</button>
+      <nav class="nav-links" id="navLinks">
+        <a href="#home">Home</a><a href="#about">About</a><a href="#services">Services</a><a href="#process">Our Process</a>
+        <a class="btn" href="mailto:hello@example.com?subject=Project%20Enquiry">Request a Quote ↗</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        <div>
+          <span class="eyebrow">✦ Software & Digital Solutions</span>
+          <h1>Build smarter.<br><span>Move forward.</span></h1>
+          <p class="hero-copy">We help startups and businesses turn ideas into reliable digital products — from professional websites and custom software to AI-powered solutions.</p>
+          <div class="hero-actions">
+            <a class="btn" href="mailto:hello@example.com?subject=Start%20a%20Project">Start a project ↗</a>
+            <a class="btn btn-outline" href="#services">Explore services →</a>
+          </div>
+          <div class="trust"><span>Practical solutions</span><span>Clear communication</span><span>Built to grow</span></div>
+        </div>
+        <div class="hero-visual" role="img" aria-label="Developer working on digital products">
+          <div class="floating-chip">✦ Ideas → Digital Products</div>
+          <div class="visual-overlay"></div>
+          <div class="visual-label"><strong>Technology that moves business forward.</strong><small>Web · Software · AI · Security</small></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-light" id="about">
+      <div class="container">
+        <div class="section-heading">
+          <span class="kicker">What we focus on</span>
+          <h2>Technology that works for your business.</h2>
+          <p>From a first website to a growing software platform, we focus on useful features, dependable performance and a clear path forward.</p>
+        </div>
+        <div class="services" id="services">
+          <article class="service-card"><div class="service-icon">⌘</div><h3>Web & Software</h3><p>Responsive websites, web applications, APIs and custom business tools.</p></article>
+          <article class="service-card"><div class="service-icon">✳</div><h3>AI Solutions</h3><p>AI-powered features, workflow automation and practical integrations.</p></article>
+          <article class="service-card"><div class="service-icon">◇</div><h3>Security Services</h3><p>Authorized security reviews, vulnerability assessment and secure development.</p></article>
+          <article class="service-card"><div class="service-icon">↗</div><h3>SEO, GEO & AEO</h3><p>Technical and on-page improvements for search and AI discovery.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="process">
+      <div class="container">
+        <div class="section-heading">
+          <span class="kicker">A clear process</span>
+          <h2>Research. Build. Secure. Improve.</h2>
+          <p>A straightforward process keeps the project focused and communication clear.</p>
+        </div>
+        <div class="process-grid">
+          <div class="step"><b>01 / DISCOVER</b><h3>Understand your goals</h3><p>We learn about your needs, users and priorities.</p></div>
+          <div class="step"><b>02 / PLAN</b><h3>Plan the right solution</h3><p>We define scope, features and a practical approach.</p></div>
+          <div class="step"><b>03 / BUILD</b><h3>Build and test carefully</h3><p>We focus on usability, quality and security.</p></div>
+          <div class="step"><b>04 / IMPROVE</b><h3>Launch and support</h3><p>We help prepare the product for its next stage.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-light">
+      <div class="container">
+        <div class="cta">
+          <div><span class="kicker" style="color:#69ddff">Have a project in mind?</span><h2>Let's make your next idea useful.</h2><p>Tell us what you are planning and what you want to achieve.</p></div>
+          <a class="btn" href="mailto:hello@example.com?subject=Project%20Enquiry">Tell us about your project ↗</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <a class="brand" href="#home"><span class="brand-mark">S</span><span>SIAM IT LABS<small>BUILD · SOLVE · INNOVATE</small></span></a>
+      <div class="footer-links"><a href="#about">About</a><a href="#services">Services</a><a href="#process">Process</a></div>
+      <div class="copyright">© <span id="year"></span> SIAM IT LABS. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <script>
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+    menuToggle.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('open');
+      menuToggle.setAttribute('aria-expanded', String(isOpen));
+    });
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        menuToggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
